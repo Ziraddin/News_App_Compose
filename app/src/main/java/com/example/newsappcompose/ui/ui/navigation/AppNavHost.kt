@@ -5,13 +5,17 @@ import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
+import com.example.newsappcompose.ui.data.repository.NewsRepository
 import com.example.newsappcompose.ui.ui.screen.ArticleDetailScreen
 import com.example.newsappcompose.ui.ui.screen.BookmarkScreen
 import com.example.newsappcompose.ui.ui.screen.Screen
 import com.example.newsappcompose.ui.ui.screen.SearchScreen
 
 @Composable
-fun AppNavHost(navController: NavHostController, modifier: Modifier = Modifier) {
+fun AppNavHost(
+    navController: NavHostController, modifier: Modifier = Modifier,
+    newsRepository: NewsRepository
+) {
     NavHost(
         navController = navController,
         modifier = modifier,
@@ -19,7 +23,8 @@ fun AppNavHost(navController: NavHostController, modifier: Modifier = Modifier) 
     ) {
         composable(Screen.Search.route) {
             SearchScreen(
-                navController = navController
+                navController = navController,
+                newsRepository = newsRepository
             )
         }
         composable(Screen.Bookmark.route) {
