@@ -13,7 +13,7 @@ It fetches real-time news using the **News API**.
 - Kotlin
 - Composable functions (UI Layouts)
 - Retrofit2 (Networking)
-- Kotlin Flows (State Management
+- Kotlin Flows (State Management)
 - Compose Navigation Component (Screen navigation)
 
 ## 📡 API
