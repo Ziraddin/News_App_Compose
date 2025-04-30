@@ -1,4 +1,4 @@
-package com.example.newsappcompose.ui.ui.screen
+package com.example.newsappcompose.ui.screen
 
 import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes

@@ -1,4 +1,4 @@
-package com.example.newsappcompose.ui.ui.component
+package com.example.newsappcompose.ui.component
 
 import androidx.compose.foundation.layout.size
 import androidx.compose.material3.Icon
@@ -7,12 +7,13 @@ import androidx.compose.material3.NavigationBarItem
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import androidx.navigation.compose.currentBackStackEntryAsState
-import com.example.newsappcompose.ui.ui.screen.Screen
+import com.example.newsappcompose.ui.screen.Screen
 
 
 @Composable
@@ -21,7 +22,10 @@ fun BottomNavigationBar(navController: NavController) {
     val navBackStackEntry = navController.currentBackStackEntryAsState()
     val currentRoute = navBackStackEntry.value?.destination?.route
 
-    NavigationBar {
+    NavigationBar(
+        containerColor = Color.White
+    ) {
+
         screens.forEach { screen ->
             NavigationBarItem(
                 icon = {

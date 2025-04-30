@@ -1,8 +1,8 @@
-package com.example.newsappcompose.ui.ui.viewmodel
+package com.example.newsappcompose.ui.viewmodel
 
 import androidx.lifecycle.ViewModel
-import com.example.newsappcompose.ui.data.local.SharedPreferences
-import com.example.newsappcompose.ui.data.model.NewsItem
+import com.example.newsappcompose.data.local.SharedPreferences
+import com.example.newsappcompose.data.model.NewsItem
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 

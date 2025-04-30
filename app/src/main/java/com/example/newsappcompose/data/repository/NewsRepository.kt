@@ -1,8 +1,8 @@
-package com.example.newsappcompose.ui.data.repository
+package com.example.newsappcompose.data.repository
 
-import com.example.newsappcompose.ui.data.model.NewsResponse
-import com.example.newsappcompose.ui.data.network.NewsApi
-import com.example.newsappcompose.ui.data.network.RetrofitHelper
+import com.example.newsappcompose.data.model.NewsResponse
+import com.example.newsappcompose.data.network.NewsApi
+import com.example.newsappcompose.data.network.RetrofitHelper
 import kotlinx.coroutines.runBlocking
 import retrofit2.Response
 

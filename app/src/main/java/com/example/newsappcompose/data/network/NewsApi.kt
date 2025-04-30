@@ -1,6 +1,6 @@
-package com.example.newsappcompose.ui.data.network
+package com.example.newsappcompose.data.network
 
-import com.example.newsappcompose.ui.data.model.NewsResponse
+import com.example.newsappcompose.data.model.NewsResponse
 import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Query

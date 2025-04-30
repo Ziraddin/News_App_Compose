@@ -1,9 +1,9 @@
-package com.example.newsappcompose.ui.ui.viewmodel
+package com.example.newsappcompose.ui.viewmodel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.newsappcompose.ui.data.model.NewsItem
-import com.example.newsappcompose.ui.data.repository.NewsRepository
+import com.example.newsappcompose.data.model.NewsItem
+import com.example.newsappcompose.data.repository.NewsRepository
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
@@ -28,7 +28,7 @@ class SearchViewModel(private val repository: NewsRepository) : ViewModel() {
                 if (response.isSuccessful) {
                     val news = response.body()
                     news?.let {
-                        _searchState.value = SearchState.Success(it.articles)
+                        _searchState.value = SearchState.Success(news.articles)
                     } ?: run {
                         _searchState.value = SearchState.Error("No data found.")
                     }

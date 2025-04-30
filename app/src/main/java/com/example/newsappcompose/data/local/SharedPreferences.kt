@@ -1,8 +1,8 @@
-package com.example.newsappcompose.ui.data.local
+package com.example.newsappcompose.data.local
 
 import android.content.Context
 import androidx.core.content.edit
-import com.example.newsappcompose.ui.data.model.NewsItem
+import com.example.newsappcompose.data.model.NewsItem
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 
