@@ -40,7 +40,8 @@ class MainActivity : ComponentActivity() {
                     },
                 ) { innerPadding ->
                     AppNavHost(
-                        navController = navController, modifier = Modifier.padding(innerPadding),
+                        navController = navController,
+                        modifier = Modifier.padding(innerPadding),
                         viewModelSearch = viewModelSearch,
                         viewModelBookmark = viewModelBookmark
                     )

@@ -6,11 +6,9 @@ import com.example.newsappcompose.data.network.RetrofitHelper
 import kotlinx.coroutines.runBlocking
 import retrofit2.Response
 
-class NewsRepository(private val api: NewsApi = RetrofitHelper.getInstance()) {
-    private val apiKey = "0e2fcd9688a742aa9cd692b971cc2099"
-
+class NewsRepository(private val api: NewsApi = RetrofitHelper.instance) {
     suspend fun getNews(query: String): Response<NewsResponse> {
-        return api.getNews(query, apiKey)
+        return api.getNews(query)
     }
 }
 
