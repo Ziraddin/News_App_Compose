@@ -21,3 +21,4 @@ dependencyResolutionManagement {
 
 rootProject.name = "News App Compose"
 include(":app")
+include(":benchmark")

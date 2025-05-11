@@ -8,7 +8,10 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.remember
+import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.semantics.semantics
+import androidx.compose.ui.semantics.testTagsAsResourceId
 import androidx.navigation.compose.rememberNavController
 import com.example.newsappcompose.data.local.SharedPreferences
 import com.example.newsappcompose.data.repository.NewsRepository
@@ -21,6 +24,8 @@ import com.example.newsappcompose.ui.viewmodel.SearchViewModel
 class MainActivity : ComponentActivity() {
     private lateinit var newsRepository: NewsRepository
     private lateinit var sharedPreferences: SharedPreferences
+
+    @OptIn(ExperimentalComposeUiApi::class)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -35,13 +40,20 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     bottomBar = {
                         BottomNavigationBar(
-                            navController
+                            navController,
+                            modifier = Modifier.semantics {
+                                testTagsAsResourceId = true
+                            }
                         )
                     },
                 ) { innerPadding ->
                     AppNavHost(
                         navController = navController,
-                        modifier = Modifier.padding(innerPadding),
+                        modifier = Modifier
+                            .padding(innerPadding)
+                            .semantics {
+                                testTagsAsResourceId = true
+                            },
                         viewModelSearch = viewModelSearch,
                         viewModelBookmark = viewModelBookmark
                     )

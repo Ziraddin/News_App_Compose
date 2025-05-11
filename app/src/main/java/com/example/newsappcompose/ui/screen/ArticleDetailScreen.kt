@@ -14,6 +14,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.unit.dp
 import androidx.core.net.toUri
@@ -28,6 +29,7 @@ fun ArticleDetailScreen(article: NewsItem) {
         modifier = Modifier
             .fillMaxSize()
             .verticalScroll(rememberScrollState())
+            .testTag("article_detail_screen")
     ) {
         AsyncImage(
             model = article.urlToImage,
@@ -82,7 +84,8 @@ fun ArticleDetailScreen(article: NewsItem) {
             style = MaterialTheme.typography.bodySmall.copy(color = MaterialTheme.colorScheme.primary),
             modifier = Modifier
                 .padding(16.dp)
-                .fillMaxWidth(),
+                .fillMaxWidth()
+                .testTag("url_text"),
             onClick = {
                 article.url.let { url ->
                     val intent = Intent(Intent.ACTION_VIEW, url.toUri())

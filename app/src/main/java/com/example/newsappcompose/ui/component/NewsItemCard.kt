@@ -17,6 +17,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import coil3.compose.AsyncImage
@@ -25,6 +26,7 @@ import com.example.newsappcompose.data.model.NewsItem
 
 @Composable
 fun NewsItemCard(
+    modifier: Modifier = Modifier,
     newsItem: NewsItem,
     onClick: () -> Unit,
     addBookmark: () -> Unit,
@@ -36,7 +38,7 @@ fun NewsItemCard(
         ),
         shape = RoundedCornerShape(12.dp),
         elevation = CardDefaults.cardElevation(defaultElevation = 4.dp),
-        modifier = Modifier
+        modifier = modifier
             .fillMaxWidth()
             .padding(12.dp)
             .clickable { onClick() }
@@ -72,6 +74,7 @@ fun NewsItemCard(
                 contentDescription = "Bookmark Icon",
                 modifier = Modifier
                     .weight(0.1f)
+                    .testTag("bookmark_icon")
                     .size(24.dp)
                     .clickable {
                         if (newsItem.isBookmarked) {

@@ -8,6 +8,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
@@ -17,7 +18,7 @@ import com.example.newsappcompose.ui.screen.Screen
 
 
 @Composable
-fun BottomNavigationBar(navController: NavController) {
+fun BottomNavigationBar(navController: NavController, modifier: Modifier = Modifier) {
     val screens = listOf(Screen.Search, Screen.Bookmark)
     val navBackStackEntry = navController.currentBackStackEntryAsState()
     val currentRoute = navBackStackEntry.value?.destination?.route
@@ -32,7 +33,9 @@ fun BottomNavigationBar(navController: NavController) {
                     Icon(
                         painterResource(id = screen.icon!!),
                         contentDescription = stringResource(id = screen.label!!),
-                        modifier = Modifier.size(24.dp)
+                        modifier = modifier
+                            .size(24.dp)
+                            .testTag(screen.testTag!!),
                     )
                 },
                 label = {

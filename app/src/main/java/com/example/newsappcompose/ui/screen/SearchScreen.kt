@@ -19,6 +19,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
@@ -29,8 +30,11 @@ import com.example.newsappcompose.ui.viewmodel.SearchState
 import com.example.newsappcompose.ui.viewmodel.SearchViewModel
 
 @Composable
-fun SearchScreen(navController: NavController, viewModelSearch: SearchViewModel,
-                 viewModelBookmark: BookmarkViewModel) {
+fun SearchScreen(
+    navController: NavController,
+    viewModelSearch: SearchViewModel,
+    viewModelBookmark: BookmarkViewModel
+) {
     var query by remember { mutableStateOf("") }
     val searchState by viewModelSearch.searchState.collectAsState()
 
@@ -50,15 +54,16 @@ fun SearchScreen(navController: NavController, viewModelSearch: SearchViewModel,
         )
         SearchBar(
             query = query, onQueryChange = { newQuery ->
-                query = newQuery
-            }, onSearch = {
-                if (query.isNotEmpty()) {
-                    viewModelSearch.searchNews(query)
-                    Log.d("SearchQuery", "Searching for: $query")
-                }
-            }, modifier = Modifier
+            query = newQuery
+        }, onSearch = {
+            if (query.isNotEmpty()) {
+                viewModelSearch.searchNews(query)
+                Log.d("SearchQuery", "Searching for: $query")
+            }
+        }, modifier = Modifier
                 .fillMaxWidth()
                 .padding(horizontal = 16.dp)
+                .testTag("search_bar")
         )
 
         when (searchState) {
@@ -84,7 +89,10 @@ fun SearchScreen(navController: NavController, viewModelSearch: SearchViewModel,
                     NewsItemList(
                         result = result,
                         navController = navController,
-                        viewModel = viewModelBookmark
+                        viewModel = viewModelBookmark,
+                        modifier = Modifier.testTag(
+                            "news_list"
+                        ),
                     )
                 }
             }
