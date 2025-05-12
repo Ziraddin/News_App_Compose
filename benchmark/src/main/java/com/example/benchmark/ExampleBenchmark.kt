@@ -141,6 +141,7 @@ class ExampleBenchmark {
     }
 
     private fun MacrobenchmarkScope.openInBrowser() {
+        device.wait(Until.hasObject(By.res("url_text")), 3000)
         val openInBrowser = device.findObject(By.res("url_text"))
         openInBrowser.click()
         Thread.sleep(2000)
