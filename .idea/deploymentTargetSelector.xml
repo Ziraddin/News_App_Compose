@@ -13,19 +13,13 @@
         </DropdownSelection>
         <DialogSelection />
       </SelectionState>
-      <SelectionState runConfigName="powerUsage()">
+      <SelectionState runConfigName="startup()">
         <option name="selectionMode" value="DROPDOWN" />
       </SelectionState>
       <SelectionState runConfigName="memoryUsage()">
         <option name="selectionMode" value="DROPDOWN" />
       </SelectionState>
-      <SelectionState runConfigName="frameTimingMetric()">
-        <option name="selectionMode" value="DROPDOWN" />
-      </SelectionState>
-      <SelectionState runConfigName="frameTimingMetric() (1)">
-        <option name="selectionMode" value="DROPDOWN" />
-      </SelectionState>
-      <SelectionState runConfigName="memoryUsage() (1)">
+      <SelectionState runConfigName="testAllMetrics()">
         <option name="selectionMode" value="DROPDOWN" />
       </SelectionState>
     </selectionStates>

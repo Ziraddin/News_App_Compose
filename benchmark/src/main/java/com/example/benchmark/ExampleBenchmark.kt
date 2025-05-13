@@ -2,6 +2,7 @@ package com.example.benchmark
 
 import android.os.Build
 import androidx.annotation.RequiresApi
+import androidx.benchmark.macro.CompilationMode
 import androidx.benchmark.macro.ExperimentalMetricApi
 import androidx.benchmark.macro.FrameTimingMetric
 import androidx.benchmark.macro.MacrobenchmarkScope
@@ -39,13 +40,12 @@ class ExampleBenchmark {
     fun startup() = benchmarkRule.measureRepeated(
         packageName = "com.example.newsappcompose",
         metrics = listOf(StartupTimingMetric()),
-        iterations = 10,
+        iterations = 1,
         startupMode = StartupMode.COLD
     ) {
         pressHome()
         startActivityAndWait()
     }
-
 
     @OptIn(ExperimentalMetricApi::class)
     @Test
@@ -89,6 +89,29 @@ class ExampleBenchmark {
         testApp()
     }
 
+    @RequiresApi(Build.VERSION_CODES.Q)
+    @OptIn(ExperimentalMetricApi::class)
+    @Test
+    fun testAllMetrics() = benchmarkRule.measureRepeated(
+        packageName = "com.example.newsappcompose",
+        metrics = listOf(
+            StartupTimingMetric(), MemoryUsageMetric(
+                mode = MemoryUsageMetric.Mode.Max, subMetrics = listOf(
+                    MemoryUsageMetric.SubMetric.Gpu,
+                    MemoryUsageMetric.SubMetric.RssAnon,
+                    MemoryUsageMetric.SubMetric.RssFile,
+                    MemoryUsageMetric.SubMetric.HeapSize,
+                    MemoryUsageMetric.SubMetric.RssShmem,
+                )
+            ), PowerMetric(type = PowerMetric.Battery()), FrameTimingMetric()
+        ),
+        iterations = 20,
+        startupMode = StartupMode.COLD,
+        compilationMode = CompilationMode.None(),
+    ) {
+        testApp()
+    }
+
     /**
      * The test performs the following actions:
      * 1. Presses the home button
@@ -128,14 +151,17 @@ class ExampleBenchmark {
         val list = device.findObject(By.res("news_list"))
         list.swipe(Direction.UP, 0.3f)
         device.waitForIdle()
+        list.swipe(Direction.DOWN, 0.3f)
+        device.waitForIdle()
         Thread.sleep(1000)
     }
 
     private fun MacrobenchmarkScope.clickNewsItem() {
-        val visibleItems = device.findObjects(By.res("news_item"))
-        visibleItems.random().click()
+        val newsItems = device.findObjects(By.res("news_item"))
+        newsItems[0].click()
         Thread.sleep(1000)
-        val articleDetailScreen = device.findObject(By.res("article_detail_screen"))
+        val articleDetailScreen =
+            device.findObject(By.res("article_detail_screen"))
         articleDetailScreen.swipe(Direction.UP, 0.8f)
         device.waitForIdle()
     }

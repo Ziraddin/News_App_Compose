@@ -7,11 +7,14 @@ import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.semantics.testTagsAsResourceId
+import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import com.example.newsappcompose.data.local.SharedPreferences
 import com.example.newsappcompose.data.repository.NewsRepository
@@ -36,15 +39,20 @@ class MainActivity : ComponentActivity() {
             val viewModelBookmark = remember { BookmarkViewModel(sharedPreferences) }
             val navController = rememberNavController()
             NewsAppComposeTheme {
+                val navBackStackEntry by navController.currentBackStackEntryAsState()
+                val currentDestination = navBackStackEntry?.destination?.route
+
                 Scaffold(
                     modifier = Modifier.fillMaxSize(),
                     bottomBar = {
-                        BottomNavigationBar(
-                            navController,
-                            modifier = Modifier.semantics {
-                                testTagsAsResourceId = true
-                            }
-                        )
+                        if (currentDestination != "article_detail") {
+                            BottomNavigationBar(
+                                navController = navController,
+                                modifier = Modifier.semantics {
+                                    testTagsAsResourceId = true
+                                }
+                            )
+                        }
                     },
                 ) { innerPadding ->
                     AppNavHost(
@@ -57,6 +65,9 @@ class MainActivity : ComponentActivity() {
                         viewModelSearch = viewModelSearch,
                         viewModelBookmark = viewModelBookmark
                     )
+                    LaunchedEffect(Unit) {
+                        reportFullyDrawn()
+                    }
                 }
             }
         }

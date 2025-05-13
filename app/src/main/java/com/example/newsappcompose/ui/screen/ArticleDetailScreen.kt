@@ -91,7 +91,6 @@ fun ArticleDetailScreen(article: NewsItem) {
                     val intent = Intent(Intent.ACTION_VIEW, url.toUri())
                     context.startActivity(intent)
                 }
-            }
-        )
+            })
     }
 }
