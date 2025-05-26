@@ -7,7 +7,7 @@ It fetches real-time news using the **News API**.
 
 | Home Screen | Search | Article Detail | Bookmarks |
 |-------------|--------|----------------|-----------|
-| ![Home](assets/img1.png) | ![Search](assets/img2.png) | ![Details](assets/img3.png) | ![Bookmarks](assets/img4.png) |
+| ![Home](img1.png) | ![Search](img2.png) | ![Details](img3.png) | ![Bookmarks](img4.png) |
 
 
 ## ✨ Features
