@@ -36,7 +36,12 @@ fun AppNavHost(
             val newsItem =
                 navController.previousBackStackEntry?.savedStateHandle?.get<NewsItem>("newsItem")
             if (newsItem != null) {
-                ArticleDetailScreen(article = newsItem)
+                ArticleDetailScreen(
+                    article = newsItem,
+                    onBack = {
+                        navController.navigateUp()
+                    },
+                )
             }
         }
     }

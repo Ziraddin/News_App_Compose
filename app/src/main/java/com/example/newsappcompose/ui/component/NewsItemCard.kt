@@ -10,12 +10,12 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.Icon
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.painterResource
@@ -34,15 +34,14 @@ fun NewsItemCard(
 ) {
     Card(
         colors = CardDefaults.cardColors(
-            containerColor = Color.White
+            containerColor = MaterialTheme.colorScheme.background
         ),
         shape = RoundedCornerShape(12.dp),
-        elevation = CardDefaults.cardElevation(defaultElevation = 4.dp),
+        elevation = CardDefaults.cardElevation(defaultElevation = 0.dp),
         modifier = modifier
             .fillMaxWidth()
             .padding(12.dp)
-            .clickable { onClick() }
-    ) {
+            .clickable { onClick() }) {
         Row(
             modifier = Modifier
                 .fillMaxWidth()
@@ -54,12 +53,13 @@ fun NewsItemCard(
                 contentDescription = "News Cover Image",
                 modifier = Modifier
                     .weight(0.4f)
-                    .height(120.dp)
+                    .height(140.dp)
                     .clip(RoundedCornerShape(topStart = 12.dp, bottomStart = 12.dp)),
                 contentScale = ContentScale.Crop
             )
 
             Text(
+                color = MaterialTheme.colorScheme.secondary,
                 text = newsItem.title,
                 maxLines = 1,
                 modifier = Modifier
@@ -68,6 +68,7 @@ fun NewsItemCard(
             )
 
             Icon(
+                tint = MaterialTheme.colorScheme.secondary,
                 painter = painterResource(
                     if (newsItem.isBookmarked) R.drawable.ic_bookmark_filled else R.drawable.ic_bookmark
                 ),
@@ -82,7 +83,7 @@ fun NewsItemCard(
                         } else {
                             addBookmark()
                         }
-                    }
+                    },
             )
         }
     }

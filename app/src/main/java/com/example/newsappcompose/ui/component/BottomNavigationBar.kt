@@ -24,9 +24,8 @@ fun BottomNavigationBar(navController: NavController, modifier: Modifier = Modif
     val currentRoute = navBackStackEntry.value?.destination?.route
 
     NavigationBar(
-        containerColor = Color.White
+        containerColor = Color(0xFFE3E0E0)
     ) {
-
         screens.forEach { screen ->
             NavigationBarItem(
                 icon = {

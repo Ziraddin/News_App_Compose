@@ -12,6 +12,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.semantics.testTagsAsResourceId
 import androidx.navigation.compose.currentBackStackEntryAsState
@@ -43,6 +44,7 @@ class MainActivity : ComponentActivity() {
                 val currentDestination = navBackStackEntry?.destination?.route
 
                 Scaffold(
+                    containerColor = Color(0xFFE3E0E0),
                     modifier = Modifier.fillMaxSize(),
                     bottomBar = {
                         if (currentDestination != "article_detail") {
@@ -50,7 +52,7 @@ class MainActivity : ComponentActivity() {
                                 navController = navController,
                                 modifier = Modifier.semantics {
                                     testTagsAsResourceId = true
-                                }
+                                },
                             )
                         }
                     },
