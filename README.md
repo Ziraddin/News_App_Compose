@@ -3,6 +3,13 @@
 A News Application built with **Kotlin** and **Jetpack Compose**.  
 It fetches real-time news using the **News API**.
 
+## 📸 Preview
+
+| Home Screen | Search | Article Detail | Bookmarks |
+|-------------|--------|----------------|-----------|
+| ![Home](img1.png) | ![Search](img2.png) | ![Details](img3.png) | ![Bookmarks](img4.png) |
+
+
 ## ✨ Features
 1. **Search News** – Search for any topic with a SearchView.
 2. **Article Details Screen** - Read News with details (author, publication time, etc.)
